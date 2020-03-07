@@ -24,7 +24,7 @@ export class CdkCronLambdaStack extends cdk.Stack {
     topic.addSubscription(new subs.LambdaSubscription(lambdaFunction))
 
     const eventRule = new events.Rule(this, functionName + '-rule', {
-      schedule: events.Schedule.expression('rate(2 minutes)') //一旦2分間の定期実行
+      schedule: events.Schedule.expression('rate(2 minutes)') //一旦2分間の定期実行を設定
     })
     eventRule.addTarget(new targets.SnsTopic(topic, {
       message: events.RuleTargetInput.fromText('cdk-test')
